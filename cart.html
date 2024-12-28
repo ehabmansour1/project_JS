@@ -51,85 +51,28 @@
           <div class="cart-header">
             <h1 class="cart-title">Shopping Cart</h1>
           </div>
-          <div class="cart-item">
-            <img
-              src="https://via.placeholder.com/300"
-              alt="Product"
-              class="item-image"
-            />
-            <div class="item-details">
-              <div class="item-name">Premium Wireless Headphones</div>
-              <div class="item-price">$129.99</div>
-            </div>
-            <div class="item-actions">
-              <div class="quantity-controls">
-                <button class="quantity-btn">-</button>
-                <span class="quantity">1</span>
-                <button class="quantity-btn">+</button>
-              </div>
-              <i class="bx bx-trash remove-btn"></i>
-            </div>
-          </div>
-
-          <div class="cart-item">
-            <img
-              src="https://via.placeholder.com/300"
-              alt="Product"
-              class="item-image"
-            />
-            <div class="item-details">
-              <div class="item-name">Smart Watch Pro</div>
-              <div class="item-price">$199.99</div>
-            </div>
-            <div class="item-actions">
-              <div class="quantity-controls">
-                <button class="quantity-btn">-</button>
-                <span class="quantity">1</span>
-                <button class="quantity-btn">+</button>
-              </div>
-              <i class="bx bx-trash remove-btn"></i>
-            </div>
-          </div>
-
-          <div class="cart-item">
-            <img
-              src="https://via.placeholder.com/300"
-              alt="Product"
-              class="item-image"
-            />
-            <div class="item-details">
-              <div class="item-name">Bluetooth Speaker</div>
-              <div class="item-price">$79.99</div>
-            </div>
-            <div class="item-actions">
-              <div class="quantity-controls">
-                <button class="quantity-btn">-</button>
-                <span class="quantity">1</span>
-                <button class="quantity-btn">+</button>
-              </div>
-              <i class="bx bx-trash remove-btn"></i>
-            </div>
-          </div>
         </div>
         <div class="cart-summary">
           <h2 class="summary-title">Order Summary</h2>
           <div class="summary-item">
             <span class="summary-label">Subtotal</span>
-            <span class="summary-value">$409.97</span>
+            <span class="summary-value">$00</span>
           </div>
           <div class="summary-item">
             <span class="summary-label">Shipping</span>
-            <span class="summary-value">$9.99</span>
+            <span class="summary-value">$00</span>
           </div>
           <div class="summary-item">
             <span class="summary-label">Tax</span>
-            <span class="summary-value">$41.00</span>
+            <span class="summary-value">$00</span>
           </div>
           <div class="summary-item summary-total">
             <span class="summary-label">Total</span>
-            <span class="summary-value">$460.96</span>
+            <span class="summary-value">$00</span>
           </div>
-          <button class="checkout-btn">Proceed to Checkout</button>
+          <button class="checkout-btn" onclick="addOrder()">
+            Proceed to Checkout
+          </button>
         </div>
       </div>
     </div>
@@ -163,5 +106,9 @@
     </footer>
     <script src="javascript/main.js"></script>
     <script src="javascript/redirectIfNotLogged.js"></script>
+    <script>
+      loadCart();
+      updateCartSummary();
+    </script>
   </body>
 </html>

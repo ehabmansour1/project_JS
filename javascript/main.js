@@ -105,20 +105,17 @@ function generateProductsToAdmin() {
 })();
 
 function register(event) {
-  event.preventDefault(); // Prevent form submission
+  event.preventDefault();
 
   let form = document.getElementById("registerForm");
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
   let confirmPassword = document.getElementById("confirmPassword").value;
 
-  // Perform Bootstrap validation
   if (!form.checkValidity()) {
     form.classList.add("was-validated");
     return;
   }
-
-  // Check if passwords match
   if (password !== confirmPassword) {
     let confirmPasswordInput = document.getElementById("confirmPassword");
     confirmPasswordInput.setCustomValidity("Passwords do not match.");
@@ -128,7 +125,6 @@ function register(event) {
     document.getElementById("confirmPassword").setCustomValidity("");
   }
 
-  // Prepare user data
   let data = {
     email: email,
     password: password,
@@ -136,8 +132,6 @@ function register(event) {
     cart: [],
     orders: [],
   };
-
-  // Send data to the server
   fetch("https://6770406e2ffbd37a63cc7e60.mockapi.io/users", {
     method: "POST",
     headers: {
@@ -153,9 +147,9 @@ function register(event) {
           icon: "success",
           confirmButtonText: "OK",
         }).then(() => {
-          form.reset(); // Reset form inputs
-          form.classList.remove("was-validated"); // Remove validation classes
-          window.location.href = "login.html"; // Redirect to login page
+          form.reset(); 
+          form.classList.remove("was-validated"); 
+          window.location.href = "login.html"; 
         });
       } else {
         throw new Error("Error registering user.");
@@ -185,8 +179,6 @@ function logout() {
 }
 async function addToCart(productId) {
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-  // Check if user is logged in
   if (!loggedInUser) {
     Swal.fire({
       title: "Error",
@@ -198,25 +190,21 @@ async function addToCart(productId) {
   }
 
   try {
-    // Fetch the logged-in user's data
     let response = await fetch(
       `https://6770406e2ffbd37a63cc7e60.mockapi.io/users/${loggedInUser.id}`
     );
     let userData = await response.json();
-
-    // Check if the product already exists in the cart
     let updatedCart = [...userData.cart];
-    let existingProduct = updatedCart.find((item) => item.productId === productId);
+    let existingProduct = updatedCart.find(
+      (item) => item.productId === productId
+    );
 
     if (existingProduct) {
-      // Increment the quantity if product already exists
       existingProduct.quantity += 1;
     } else {
-      // Add the product to the cart if it doesn't exist
       updatedCart.push({ productId: productId, quantity: 1 });
     }
 
-    // Update the user's cart in the API
     let updateResponse = await fetch(
       `https://6770406e2ffbd37a63cc7e60.mockapi.io/users/${loggedInUser.id}`,
       {
@@ -245,6 +233,205 @@ async function addToCart(productId) {
     Swal.fire({
       title: "Error",
       text: "Something went wrong. Please try again later.",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+}
+async function loadCart() {
+  const cartContainer = document.querySelector(".cart-items");
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (!loggedInUser) {
+    Swal.fire({
+      title: "Error",
+      text: "You must be logged in to view your cart.",
+      icon: "error",
+      confirmButtonText: "OK",
+    }).then(() => {
+      window.location.href = "login.html";
+    });
+    return;
+  }
+
+  try {
+    const userResponse = await fetch(
+      `https://6770406e2ffbd37a63cc7e60.mockapi.io/users/${loggedInUser.id}`
+    );
+    const userData = await userResponse.json();
+    const products = await fetchProducts();
+    if (userData.cart.length === 0) {
+      cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+      return;
+    }
+    userData.cart.forEach((cartItem) => {
+      const product = products.find(
+        (p) => parseInt(p.id) === cartItem.productId
+      );
+
+      if (product) {
+        const cartItemHTML = `
+          <div class="cart-item">
+            <img src="${
+              product.image || "https://via.placeholder.com/300"
+            }" alt="${product.name}" class="item-image">
+            <div class="item-details">
+              <div class="item-name">${product.name}</div>
+              <div class="item-price">$${product.price.toFixed(2)}</div>
+            </div>
+            <div class="item-actions">
+              <div class="quantity-controls">
+                <button class="quantity-btn" onclick="updateQuantity(${
+                  cartItem.productId
+                }, -1)">-</button>
+                <span class="quantity">${cartItem.quantity}</span>
+                <button class="quantity-btn" onclick="updateQuantity(${
+                  cartItem.productId
+                }, 1)">+</button>
+              </div>
+              <i class="bx bx-trash remove-btn" onclick="removeFromCart(${
+                cartItem.productId
+              })"></i>
+            </div>
+          </div>
+        `;
+
+        cartContainer.insertAdjacentHTML("beforeend", cartItemHTML);
+      }
+    });
+  } catch (error) {
+    console.error("Error fetching cart items or products:", error);
+    Swal.fire({
+      title: "Error",
+      text: "Failed to load cart items. Please try again later.",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+}
+async function updateQuantity(productId, change) {
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!loggedInUser) return;
+
+  try {
+    const userResponse = await fetch(
+      `https://6770406e2ffbd37a63cc7e60.mockapi.io/users/${loggedInUser.id}`
+    );
+    const userData = await userResponse.json();
+
+    const updatedCart = userData.cart.map((item) => {
+      if (item.productId === productId) {
+        item.quantity = Math.max(1, item.quantity + change);
+      }
+      return item;
+    });
+
+    await fetch(
+      `https://6770406e2ffbd37a63cc7e60.mockapi.io/users/${loggedInUser.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cart: updatedCart }),
+      }
+    );
+
+    location.reload();
+  } catch (error) {
+    console.error("Error updating quantity:", error);
+  }
+}
+async function removeFromCart(productId) {
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!loggedInUser) return;
+
+  try {
+    const userResponse = await fetch(
+      `https://6770406e2ffbd37a63cc7e60.mockapi.io/users/${loggedInUser.id}`
+    );
+    const userData = await userResponse.json();
+
+    const updatedCart = userData.cart.filter(
+      (item) => item.productId !== productId
+    );
+
+    await fetch(
+      `https://6770406e2ffbd37a63cc7e60.mockapi.io/users/${loggedInUser.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cart: updatedCart }),
+      }
+    );
+
+    location.reload();
+  } catch (error) {
+    console.error("Error removing item from cart:", error);
+  }
+}
+async function updateCartSummary() {
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (!loggedInUser) {
+    Swal.fire({
+      title: "Error",
+      text: "You must be logged in to view your cart summary.",
+      icon: "error",
+      confirmButtonText: "OK",
+    }).then(() => {
+      window.location.href = "login.html";
+    });
+    return;
+  }
+
+  try {
+    const userResponse = await fetch(
+      `https://6770406e2ffbd37a63cc7e60.mockapi.io/users/${loggedInUser.id}`
+    );
+    const userData = await userResponse.json();
+    const products = await fetchProducts();
+    let subtotal = 0;
+    userData.cart.forEach((cartItem) => {
+      const product = products.find(
+        (p) => parseInt(p.id) === cartItem.productId
+      );
+      if (product) {
+        subtotal += product.price * cartItem.quantity;
+      }
+    });
+    const shipping = 9.99;
+    const taxRate = 0.1;
+    const tax = subtotal * taxRate;
+    const total = subtotal + shipping + tax;
+    const summaryContainer = document.querySelector(".cart-summary");
+    summaryContainer.innerHTML = `
+      <h2 class="summary-title">Order Summary</h2>
+      <div class="summary-item">
+        <span class="summary-label">Subtotal</span>
+        <span class="summary-value">$${subtotal.toFixed(2)}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Shipping</span>
+        <span class="summary-value">$${shipping.toFixed(2)}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Tax</span>
+        <span class="summary-value">$${tax.toFixed(2)}</span>
+      </div>
+      <div class="summary-item summary-total">
+        <span class="summary-label">Total</span>
+        <span class="summary-value">$${total.toFixed(2)}</span>
+      </div>
+      <button class="checkout-btn">Proceed to Checkout</button>
+    `;
+  } catch (error) {
+    console.error("Error updating cart summary:", error);
+    Swal.fire({
+      title: "Error",
+      text: "Failed to update order summary. Please try again later.",
       icon: "error",
       confirmButtonText: "OK",
     });
