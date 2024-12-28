@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <script
+      src="https://kit.fontawesome.com/3162f5d9b2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <title>Title</title>
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <div class="nav-content">
+        <a href="dashboard.html" class="logo">ShopMate</a>
+
+        <div class="nav-icons">
+          <a href="#" class="primary-btn" id="log-out">logout</a>
+        </div>
+      </div>
+    </nav>
+    <div class="orders-admin">
+      <div class="container">
+        <div class="header">
+          <h1 class="title">Orders Management</h1>
+          <a href="dashboard.html" class="btn btn-primary">
+            <i class="bx bx-arrow-back"></i>
+            Dashboard
+          </a>
+        </div>
+
+        <div class="search-bar">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search orders by ID or customer name..."
+          />
+        </div>
+
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#ORD-2023-001</td>
+              <td>John Doe</td>
+              <td>2023-07-20</td>
+              <td>$1,299.99</td>
+              <td><span class="status-badge status-pending">Pending</span></td>
+              <td>
+                <div class="product-actions">
+                  <button class="action-btn view-btn">
+                    <i class="bx bx-show"></i>
+                  </button>
+                  <button class="action-btn confirm-btn">
+                    <i class="bx bx-check"></i>
+                  </button>
+                  <button class="action-btn cancel-btn">
+                    <i class="bx bx-x"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>#ORD-2023-002</td>
+              <td>Jane Smith</td>
+              <td>2023-07-19</td>
+              <td>$999.99</td>
+              <td>
+                <span class="status-badge status-confirmed">Confirmed</span>
+              </td>
+              <td>
+                <div class="product-actions">
+                  <button class="action-btn view-btn">
+                    <i class="bx bx-show"></i>
+                  </button>
+                  <button class="action-btn confirm-btn">
+                    <i class="bx bx-check"></i>
+                  </button>
+                  <button class="action-btn cancel-btn">
+                    <i class="bx bx-x"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>#ORD-2023-003</td>
+              <td>Mike Johnson</td>
+              <td>2023-07-18</td>
+              <td>$249.99</td>
+              <td>
+                <span class="status-badge status-delivered">Delivered</span>
+              </td>
+              <td>
+                <div class="product-actions">
+                  <button class="action-btn view-btn">
+                    <i class="bx bx-show"></i>
+                  </button>
+                  <button class="action-btn confirm-btn">
+                    <i class="bx bx-check"></i>
+                  </button>
+                  <button class="action-btn cancel-btn">
+                    <i class="bx bx-x"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>#ORD-2023-004</td>
+              <td>Sarah Wilson</td>
+              <td>2023-07-17</td>
+              <td>$599.99</td>
+              <td>
+                <span class="status-badge status-cancelled">Cancelled</span>
+              </td>
+              <td>
+                <div class="product-actions">
+                  <button class="action-btn view-btn">
+                    <i class="bx bx-show"></i>
+                  </button>
+                  <button class="action-btn confirm-btn">
+                    <i class="bx bx-check"></i>
+                  </button>
+                  <button class="action-btn cancel-btn">
+                    <i class="bx bx-x"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="../javascript/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <script
+      src="https://kit.fontawesome.com/3162f5d9b2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <title>Title</title>
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <div class="nav-content">
+        <a href="dashboard.html" class="logo">ShopMate</a>
+        <div class="nav-icons">
+          <a href="#" class="primary-btn" id="log-out">logout</a>
+        </div>
+      </div>
+    </nav>
+    <div class="add-product-section">
+      <div class="container">
+        <div class="header">
+          <h1 class="title">Add Product</h1>
+          <div class="actions">
+            <a href="dashboard.html" class="btn btn-primary">
+              <i class="bx bx-arrow-back"></i>
+              Dashboard
+            </a>
+          </div>
+        </div>
+        <form id="addProductForm">
+          <div class="form-container">
+            <div class="left-section">
+              <div class="form-group">
+                <label class="form-label" for="productName">Product Name</label>
+                <input
+                  type="text"
+                  id="productName"
+                  class="form-input"
+                  placeholder="Enter product name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="category">Category</label>
+                <select id="category" class="form-input" required>
+                  <option value="">Select category</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="clothing">Clothing</option>
+                  <option value="books">Books</option>
+                  <option value="home">Home & Living</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="price">Price</label>
+                <input
+                  type="number"
+                  id="price"
+                  class="form-input"
+                  placeholder="Enter price"
+                  required
+                  min="0"
+                  step="0.01"
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="stock">Stock Quantity</label>
+                <input
+                  type="number"
+                  id="stock"
+                  class="form-input"
+                  placeholder="Enter stock quantity"
+                  required
+                  min="0"
+                />
+              </div>
+            </div>
+
+            <div class="right-section">
+              <div class="form-group">
+                <label class="form-label" for="description">Description</label>
+                <textarea
+                  id="description"
+                  class="form-input form-textarea"
+                  placeholder="Enter product description"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="productImage"
+                  >Product Image</label
+                >
+                <input
+                  type="text"
+                  id="productImage"
+                  class="form-input"
+                  placeholder="Enter product image url"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button type="submit" class="btn btn-primary">
+              <i class="bx bx-save"></i>
+              Save Product
+            </button>
+            <button type="button" class="btn btn-secondary">
+              <i class="bx bx-x"></i>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="../javascript/main.js"></script>
+  </body>
+</html>
