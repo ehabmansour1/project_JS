@@ -21,7 +21,7 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <title>Title</title>
   </head>
@@ -56,7 +56,6 @@
           <h1 class="register-title">Create Account</h1>
           <p class="register-subtitle">Join our shopping community today</p>
         </div>
-
         <form id="registerForm" class="needs-validation" novalidate>
           <div class="form-row">
             <div class="form-group">
@@ -136,7 +135,6 @@
               <div class="valid-feedback">Strong password!</div>
             </div>
           </div>
-
           <div class="form-group">
             <label class="form-label" for="confirmPassword"
               >Confirm Password</label
@@ -155,7 +153,13 @@
             </div>
           </div>
 
-          <button type="submit" class="register-button">Create Account</button>
+          <button
+            type="submit"
+            class="register-button"
+            onclick="register(event)"
+          >
+            Create Account
+          </button>
 
           <div class="auth-links">
             <span>Already have an account? </span>

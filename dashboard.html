@@ -17,6 +17,7 @@
       rel="stylesheet"
     />
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Title</title>
   </head>
   <body>
@@ -125,7 +126,7 @@
             <p class="card-description">Manage your account preferences</p>
           </a>
 
-          <a href="#" class="dashboard-card">
+          <a href="#" class="dashboard-card" onclick="logout()">
             <div class="card-icon">
               <lord-icon
                 src="https://cdn.lordicon.com/nhfyhmlt.json"
@@ -171,5 +172,6 @@
       </div>
     </footer>
     <script src="javascript/main.js"></script>
+    <script src="javascript/redirectIfNotLogged.js"></script>
   </body>
 </html>
