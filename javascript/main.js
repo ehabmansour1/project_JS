@@ -267,7 +267,7 @@ async function loadCart() {
             </lord-icon>
             <h3>Your cart is empty</h3>
             <p>Looks like you haven't added anything to your cart yet</p>
-            <a href="/" style='display: block;
+            <a href="index.html" style='display: block;
     width: fit-content;
     margin: 20px auto 0;' class="checkout-btn">Start Shopping</a>
           </div>`;
