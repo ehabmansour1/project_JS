@@ -977,12 +977,12 @@ img {
   font-weight: 500;
 }
 
-.my-orders-section .status-delivered {
+.my-orders-section .status-approved {
   background-color: #ecfdf5;
   color: var(--success);
 }
 
-.my-orders-section .status-processing {
+.my-orders-section .status-pending {
   background-color: #fffbeb;
   color: var(--warning);
 }
@@ -2706,4 +2706,104 @@ img {
   .cart-section .item-actions {
     justify-content: center;
   }
+}
+.empty-cart {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-cart lord-icon {
+  margin-bottom: 2rem;
+  width: 150px;
+  height: 150px;
+}
+
+.empty-cart h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.empty-cart p {
+  color: var(--text);
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .cart-item {
+    padding: 15px;
+  }
+
+  .cart-item-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cart-summary {
+    margin-top: 2rem;
+    position: static;
+  }
+}
+.product-card {
+  position: relative;
+}
+button.wish-button {
+  background: #f3f4f6;
+  cursor: pointer;
+  transition: var(--transition);
+  position: absolute;
+  color: var(--danger);
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 15px;
+  top: 15px;
+}
+.empty-state {
+  background: white;
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 1.5rem;
+}
+
+.empty-title {
+  color: #1e1b4b;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.empty-description {
+  color: #6b7280;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.shop-button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.shop-button:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
 }

@@ -90,7 +90,60 @@
     <script src="javascript/main.js"></script>
     <script>
       generateProductsToHome();
+      document
+        .querySelector(".sort-select")
+        .addEventListener("change", function () {
+          let sortOption = this.value;
+          let productGrid = document.querySelector(".product-grid");
+          let productCards = Array.from(
+            productGrid.querySelectorAll(".product-card")
+          );
+          let sortedCards;
+          switch (sortOption) {
+            case "newest":
+              sortedCards = productCards.sort(
+                (a, b) => parseInt(b.id) - parseInt(a.id)
+              );
+              break;
+            case "price-low":
+              sortedCards = productCards.sort(
+                (a, b) =>
+                  parseFloat(
+                    a
+                      .querySelector(".product-price")
+                      .textContent.replace("$", "")
+                  ) -
+                  parseFloat(
+                    b
+                      .querySelector(".product-price")
+                      .textContent.replace("$", "")
+                  )
+              );
+              break;
+            case "price-high":
+              sortedCards = productCards.sort(
+                (a, b) =>
+                  parseFloat(
+                    b
+                      .querySelector(".product-price")
+                      .textContent.replace("$", "")
+                  ) -
+                  parseFloat(
+                    a
+                      .querySelector(".product-price")
+                      .textContent.replace("$", "")
+                  )
+              );
+              break;
+            case "popular":
+              sortedCards = productCards;
+              break;
+            default:
+              sortedCards = productCards;
+          }
+          productGrid.innerHTML = "";
+          sortedCards.forEach((card) => productGrid.appendChild(card));
+        });
     </script>
-    
   </body>
 </html>

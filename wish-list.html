@@ -50,76 +50,7 @@
         <div class="wishlist-header">
           <h1 class="wishlist-title">My Wishlist</h1>
         </div>
-        <div class="wishlist-grid">
-          <div class="wishlist-item">
-            <div class="item-image-container">
-              <img
-                src="https://via.placeholder.com/300"
-                alt="Product"
-                class="item-image"
-              />
-              <div class="item-remove">
-                <i class="bx bx-x"></i>
-              </div>
-            </div>
-            <div class="item-details">
-              <div class="item-name">Premium Wireless Headphones</div>
-              <div class="item-price">$129.99</div>
-              <button class="add-to-cart">Add to Cart</button>
-            </div>
-          </div>
-          <div class="wishlist-item">
-            <div class="item-image-container">
-              <img
-                src="https://via.placeholder.com/300"
-                alt="Product"
-                class="item-image"
-              />
-              <div class="item-remove">
-                <i class="bx bx-x"></i>
-              </div>
-            </div>
-            <div class="item-details">
-              <div class="item-name">Smart Watch Pro</div>
-              <div class="item-price">$199.99</div>
-              <button class="add-to-cart">Add to Cart</button>
-            </div>
-          </div>
-          <div class="wishlist-item">
-            <div class="item-image-container">
-              <img
-                src="https://via.placeholder.com/300"
-                alt="Product"
-                class="item-image"
-              />
-              <div class="item-remove">
-                <i class="bx bx-x"></i>
-              </div>
-            </div>
-            <div class="item-details">
-              <div class="item-name">Bluetooth Speaker</div>
-              <div class="item-price">$79.99</div>
-              <button class="add-to-cart">Add to Cart</button>
-            </div>
-          </div>
-          <div class="wishlist-item">
-            <div class="item-image-container">
-              <img
-                src="https://via.placeholder.com/300"
-                alt="Product"
-                class="item-image"
-              />
-              <div class="item-remove">
-                <i class="bx bx-x"></i>
-              </div>
-            </div>
-            <div class="item-details">
-              <div class="item-name">Wireless Earbuds</div>
-              <div class="item-price">$89.99</div>
-              <button class="add-to-cart">Add to Cart</button>
-            </div>
-          </div>
-        </div>
+        <div class="wishlist-grid"></div>
       </div>
     </div>
     <footer class="footer">
@@ -152,6 +83,8 @@
     </footer>
     <script src="javascript/main.js"></script>
     <script src="javascript/redirectIfNotLogged.js"></script>
-    <script></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", populateWishlist);
+    </script>
   </body>
 </html>
