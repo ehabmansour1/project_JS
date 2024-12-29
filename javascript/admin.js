@@ -12,7 +12,7 @@ if (document.getElementById("admin-log-out")) {
     .getElementById("admin-log-out")
     .addEventListener("click", function () {
       localStorage.removeItem("adminLogged");
-      window.location.href = "/admin";
+      window.location.href = "../admin";
     });
 }
 //delete product=====================================================================
@@ -30,7 +30,7 @@ function deleteProduct(id) {
     });
 }
 function editProduct(id) {
-  window.location.href = `/admin/add-product.html?id=${id}`;
+  window.location.href = `../admin/add-product.html?id=${id}`;
 }
 //add product=====================================================================
 function validateAndSubmit(event) {
@@ -338,7 +338,7 @@ async function confirmOrder(orderId) {
       icon: "success",
       confirmButtonText: "OK",
     });
-    populateOrdersTable(); // Refresh table
+    populateOrdersTable();
   } catch (error) {
     console.error("Error confirming order:", error);
   }
@@ -360,7 +360,7 @@ async function cancelOrder(orderId) {
       icon: "success",
       confirmButtonText: "OK",
     });
-    populateOrdersTable(); // Refresh table
+    populateOrdersTable();
   } catch (error) {
     console.error("Error cancelling order:", error);
   }
