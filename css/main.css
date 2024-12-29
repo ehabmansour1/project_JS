@@ -977,7 +977,7 @@ img {
   font-weight: 500;
 }
 
-.my-orders-section .status-approved {
+.my-orders-section .status-confirmed {
   background-color: #ecfdf5;
   color: var(--success);
 }
@@ -2806,4 +2806,7 @@ button.wish-button {
 .shop-button:hover {
   background: #4338ca;
   transform: translateY(-1px);
+}
+.index-dashboard {
+  padding: 100px 20px;
 }

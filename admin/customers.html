@@ -43,37 +43,6 @@
             <div class="stat-title">Total Customers</div>
             <div class="stat-value">2,543</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-title">Active Customers</div>
-            <div class="stat-value">2,100</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-title">New This Month</div>
-            <div class="stat-value">145</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-title">Average Order Value</div>
-            <div class="stat-value">$248</div>
-          </div>
-        </div>
-
-        <div class="search-bar">
-          <input
-            type="text"
-            class="search-input"
-            placeholder="Search customers..."
-          />
-          <select class="search-input">
-            <option value="">Status: All</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-          <select class="search-input">
-            <option value="">Sort By: Newest</option>
-            <option value="oldest">Sort By: Oldest</option>
-            <option value="orders">Sort By: Orders</option>
-            <option value="spent">Sort By: Amount Spent</option>
-          </select>
         </div>
 
         <div class="customers-table">
@@ -83,124 +52,11 @@
                 <tr>
                   <th>Customer</th>
                   <th>Status</th>
-                  <th>Orders</th>
-                  <th>Total Spent</th>
+                  <th>Cart</th>
                   <th>Last Order</th>
-                  <th>Actions</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="customer-info">
-                      <img
-                        src="https://picsum.photos/100/100"
-                        alt="Customer"
-                        class="customer-avatar"
-                      />
-                      <div>
-                        <div class="customer-name">Alex Johnson</div>
-                        <div class="customer-email">alex.j@example.com</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="status status-active">Active</span></td>
-                  <td>24</td>
-                  <td>$2,890</td>
-                  <td>2023-10-15</td>
-                  <td>
-                    <button class="action-btn btn-view">View Details</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="customer-info">
-                      <img
-                        src="https://picsum.photos/101/100"
-                        alt="Customer"
-                        class="customer-avatar"
-                      />
-                      <div>
-                        <div class="customer-name">Sarah Wilson</div>
-                        <div class="customer-email">sarah.w@example.com</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="status status-active">Active</span></td>
-                  <td>18</td>
-                  <td>$1,756</td>
-                  <td>2023-10-14</td>
-                  <td>
-                    <button class="action-btn btn-view">View Details</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="customer-info">
-                      <img
-                        src="https://picsum.photos/102/100"
-                        alt="Customer"
-                        class="customer-avatar"
-                      />
-                      <div>
-                        <div class="customer-name">Michael Brown</div>
-                        <div class="customer-email">michael.b@example.com</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="status status-inactive">Inactive</span></td>
-                  <td>12</td>
-                  <td>$890</td>
-                  <td>2023-09-28</td>
-                  <td>
-                    <button class="action-btn btn-view">View Details</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="customer-info">
-                      <img
-                        src="https://picsum.photos/103/100"
-                        alt="Customer"
-                        class="customer-avatar"
-                      />
-                      <div>
-                        <div class="customer-name">Emma Davis</div>
-                        <div class="customer-email">emma.d@example.com</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="status status-active">Active</span></td>
-                  <td>32</td>
-                  <td>$3,420</td>
-                  <td>2023-10-16</td>
-                  <td>
-                    <button class="action-btn btn-view">View Details</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="customer-info">
-                      <img
-                        src="https://picsum.photos/104/100"
-                        alt="Customer"
-                        class="customer-avatar"
-                      />
-                      <div>
-                        <div class="customer-name">James Wilson</div>
-                        <div class="customer-email">james.w@example.com</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="status status-active">Active</span></td>
-                  <td>28</td>
-                  <td>$2,980</td>
-                  <td>2023-10-15</td>
-                  <td>
-                    <button class="action-btn btn-view">View Details</button>
-                  </td>
-                </tr>
-              </tbody>
+              <tbody></tbody>
             </table>
           </div>
         </div>
@@ -208,5 +64,8 @@
     </div>
     <script src="../javascript/main.js"></script>
     <script src="../javascript/admin.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", populateCustomersTable);
+    </script>
   </body>
 </html>

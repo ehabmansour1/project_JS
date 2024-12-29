@@ -46,8 +46,8 @@ function validateAndSubmit(event) {
 async function addProduct(e) {
   e.preventDefault();
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get("id");
+  let urlParams = new URLSearchParams(window.location.search);
+  let productId = urlParams.get("id");
 
   if (productId) {
     await deleteProductAfterEdit(productId);
@@ -166,7 +166,7 @@ function populateCategories() {
 async function validateAndAddCategory(event) {
   event.preventDefault();
 
-  const form = document.getElementById("addCategoryForm");
+  let form = document.getElementById("addCategoryForm");
   if (!form.checkValidity()) {
     form.classList.add("was-validated");
     return;
@@ -260,4 +260,160 @@ function deleteCategory(id) {
     .catch((error) => {
       console.error("Error:", error);
     });
+}
+async function populateOrdersTable() {
+  try {
+    let response = await fetch(
+      "https://67713e682ffbd37a63ce91f6.mockapi.io/orders"
+    );
+    let orders = await response.json();
+    let tableBody = document.querySelector(".orders-table tbody");
+    if (orders.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="6" class="text-center">No orders available</td>
+        </tr>
+      `;
+      return;
+    }
+    tableBody.innerHTML = orders
+      .map((order) => {
+        let itemsList = order.items
+          .map((item) => `${item.name} (x${item.quantity})`)
+          .join(", ");
+
+        return `
+        <tr>
+          <td>${order.id}</td>
+          <td>${order.userId}</td>
+          <td>${new Date().toISOString().split("T")[0]}</td>
+          <td>$${order.price.toFixed(2)}</td>
+          <td>
+            <span class="status-badge status-${order.status.toLowerCase()}">${
+          order.status
+        }</span>
+          </td>
+          <td>
+            <div class="product-actions">
+          
+              <button class="action-btn confirm-btn" onclick="confirmOrder(${
+                order.id
+              })">
+                <i class="bx bx-check"></i>
+              </button>
+              <button class="action-btn cancel-btn" onclick="cancelOrder(${
+                order.id
+              })">
+                <i class="bx bx-x"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+      })
+      .join("");
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    Swal.fire({
+      title: "Error",
+      text: "Failed to load orders. Please try again later.",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+}
+async function confirmOrder(orderId) {
+  try {
+    await fetch(
+      `https://67713e682ffbd37a63ce91f6.mockapi.io/orders/${orderId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "confirmed" }),
+      }
+    );
+    Swal.fire({
+      title: "Success",
+      text: `Order #${orderId} confirmed.`,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+    populateOrdersTable(); // Refresh table
+  } catch (error) {
+    console.error("Error confirming order:", error);
+  }
+}
+
+async function cancelOrder(orderId) {
+  try {
+    await fetch(
+      `https://67713e682ffbd37a63ce91f6.mockapi.io/orders/${orderId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "cancelled" }),
+      }
+    );
+    Swal.fire({
+      title: "Success",
+      text: `Order #${orderId} cancelled.`,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+    populateOrdersTable(); // Refresh table
+  } catch (error) {
+    console.error("Error cancelling order:", error);
+  }
+}
+
+async function populateCustomersTable() {
+  try {
+    let [usersResponse] = await Promise.all([
+      fetch("https://6770406e2ffbd37a63cc7e60.mockapi.io/users/"),
+    ]);
+    let users = await usersResponse.json();
+    document.querySelector("div.stat-value").innerHTML = users.length;
+    let tableBody = document.querySelector(".customers-table tbody");
+    if (users.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="5" class="text-center">No customers found</td>
+        </tr>
+      `;
+      return;
+    }
+
+    tableBody.innerHTML = users
+      .map((user) => {
+        return `
+        <tr>
+          <td>
+            <div class="customer-info">
+              <img
+                src="https://picsum.photos/100/100"
+                alt="Customer"
+                class="customer-avatar"
+              />
+              <div>
+                <div class="customer-name">User ID : ${user.id}</div>
+                <div class="customer-email">${user.email}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="status status-active">Active</span></td>
+          <td>${user.cart.length}</td>
+          <td>${new Date().toISOString().split("T")[0]}</td>
+        </tr>
+      `;
+      })
+      .join("");
+  } catch (error) {
+    console.error("Error fetching customers:", error);
+    Swal.fire({
+      title: "Error",
+      text: "Failed to load customers. Please try again later.",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
 }

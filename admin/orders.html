@@ -16,6 +16,7 @@
       rel="stylesheet"
     />
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Title</title>
   </head>
   <body>
@@ -57,98 +58,14 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>#ORD-2023-001</td>
-              <td>John Doe</td>
-              <td>2023-07-20</td>
-              <td>$1,299.99</td>
-              <td><span class="status-badge status-pending">Pending</span></td>
-              <td>
-                <div class="product-actions">
-                  <button class="action-btn view-btn">
-                    <i class="bx bx-show"></i>
-                  </button>
-                  <button class="action-btn confirm-btn">
-                    <i class="bx bx-check"></i>
-                  </button>
-                  <button class="action-btn cancel-btn">
-                    <i class="bx bx-x"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>#ORD-2023-002</td>
-              <td>Jane Smith</td>
-              <td>2023-07-19</td>
-              <td>$999.99</td>
-              <td>
-                <span class="status-badge status-confirmed">Confirmed</span>
-              </td>
-              <td>
-                <div class="product-actions">
-                  <button class="action-btn view-btn">
-                    <i class="bx bx-show"></i>
-                  </button>
-                  <button class="action-btn confirm-btn">
-                    <i class="bx bx-check"></i>
-                  </button>
-                  <button class="action-btn cancel-btn">
-                    <i class="bx bx-x"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>#ORD-2023-003</td>
-              <td>Mike Johnson</td>
-              <td>2023-07-18</td>
-              <td>$249.99</td>
-              <td>
-                <span class="status-badge status-delivered">Delivered</span>
-              </td>
-              <td>
-                <div class="product-actions">
-                  <button class="action-btn view-btn">
-                    <i class="bx bx-show"></i>
-                  </button>
-                  <button class="action-btn confirm-btn">
-                    <i class="bx bx-check"></i>
-                  </button>
-                  <button class="action-btn cancel-btn">
-                    <i class="bx bx-x"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>#ORD-2023-004</td>
-              <td>Sarah Wilson</td>
-              <td>2023-07-17</td>
-              <td>$599.99</td>
-              <td>
-                <span class="status-badge status-cancelled">Cancelled</span>
-              </td>
-              <td>
-                <div class="product-actions">
-                  <button class="action-btn view-btn">
-                    <i class="bx bx-show"></i>
-                  </button>
-                  <button class="action-btn confirm-btn">
-                    <i class="bx bx-check"></i>
-                  </button>
-                  <button class="action-btn cancel-btn">
-                    <i class="bx bx-x"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
+          <tbody></tbody>
         </table>
       </div>
     </div>
     <script src="../javascript/main.js"></script>
     <script src="../javascript/admin.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", populateOrdersTable);
+    </script>
   </body>
 </html>
