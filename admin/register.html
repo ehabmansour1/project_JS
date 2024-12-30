@@ -17,7 +17,7 @@
     />
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Admin - Login</title>
+    <title>Admin - Register</title>
     <link
       rel="icon"
       type="image/png"
@@ -37,13 +37,12 @@
     <div class="login-admin">
       <div class="login-container">
         <div class="login-header">
-          <h1 class="login-title">Admin Login</h1>
+          <h1 class="login-title">Admin Register</h1>
           <p class="login-subtitle">
             Enter your credentials to access the dashboard
           </p>
         </div>
-
-        <form id="loginForm" onsubmit="handleLogin(event)">
+        <form id="registerForm" onsubmit="handleRegister(event)">
           <div class="form-group">
             <label class="form-label" for="username">Username</label>
             <div class="input-group">
@@ -71,13 +70,12 @@
               />
             </div>
           </div>
-
-          <button type="submit" class="login-button">Login</button>
-          <a href="register.html" class="forgot-password">Need An Account?</a>
+          <button type="submit" class="login-button">Register</button>
+          <a href="login.html" class="forgot-password">Have Account?</a>
         </form>
       </div>
     </div>
     <script src="../javascript/main.js"></script>
-    <script src="../javascript/admin-login-handler.js"></script>
+    <script src="../javascript/admin-register-handler.js"></script>
   </body>
 </html>

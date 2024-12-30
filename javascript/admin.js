@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 });
-//admin=====================================================================
+//admin logout=====================================================================
 if (document.getElementById("admin-log-out")) {
   document
     .getElementById("admin-log-out")
@@ -94,7 +94,7 @@ async function addProduct(e) {
     });
   }
 }
-
+// for editing product ====================================================
 async function deleteProductAfterEdit(productId) {
   try {
     await fetch(
@@ -113,7 +113,7 @@ async function deleteProductAfterEdit(productId) {
     });
   }
 }
-
+// load product before edit====================================================
 async function populateForm(productId) {
   try {
     let products = await fetchProducts();
@@ -138,7 +138,7 @@ let productId = urlParams.get("id");
 if (productId) {
   populateForm(productId);
 }
-
+// fetch cats====================================================
 async function fetchCategories() {
   try {
     let response = await fetch(
@@ -150,6 +150,7 @@ async function fetchCategories() {
     console.error("Error fetching categories:", error);
   }
 }
+// laod cats====================================================
 function populateCategories() {
   let categorySelect = document.getElementById("category");
   fetchCategories().then((categories) => {
@@ -162,7 +163,7 @@ function populateCategories() {
     });
   });
 }
-
+// add cats====================================================
 async function validateAndAddCategory(event) {
   event.preventDefault();
 
@@ -218,6 +219,7 @@ async function validateAndAddCategory(event) {
     });
   }
 }
+// load cats====================================================
 function generatecategoryCard(category) {
   return `
   
@@ -248,6 +250,7 @@ function generateCategories() {
     });
   });
 }
+// delete cats====================================================
 function deleteCategory(id) {
   fetch(`https://6770406e2ffbd37a63cc7e60.mockapi.io/categories/${id}`, {
     method: "DELETE",
@@ -261,6 +264,7 @@ function deleteCategory(id) {
       console.error("Error:", error);
     });
 }
+// load orders ====================================================
 async function populateOrdersTable() {
   try {
     let response = await fetch(
@@ -322,6 +326,7 @@ async function populateOrdersTable() {
     });
   }
 }
+// confirm or cancel orders ====================================================
 async function confirmOrder(orderId) {
   try {
     await fetch(
@@ -365,7 +370,7 @@ async function cancelOrder(orderId) {
     console.error("Error cancelling order:", error);
   }
 }
-
+// loadl customers ====================================================
 async function populateCustomersTable() {
   try {
     let [usersResponse] = await Promise.all([

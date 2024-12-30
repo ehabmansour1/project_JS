@@ -13,7 +13,7 @@ let nextSlide = () => {
   slides[currentSlide].style.opacity = 1;
   showSlide(currentSlide);
 };
-
+//fetch products=====================================================================
 async function fetchProducts() {
   try {
     let response = await fetch(
@@ -25,6 +25,7 @@ async function fetchProducts() {
     console.error("Error fetching products:", error);
   }
 }
+//laod products=====================================================================
 function generateProductCard(product) {
   return `
       <div class="product-card" id='${product.id}'>
@@ -44,6 +45,7 @@ function generateProductCard(product) {
       </div>
   `;
 }
+//load products to home=====================================================================
 function generateProductsToHome() {
   fetchProducts().then((res) => {
     let products = res;
@@ -53,6 +55,7 @@ function generateProductsToHome() {
     });
   });
 }
+//load product ot admin=====================================================================
 function generateProductCardAdmin(product) {
   return `
       <div class="product-card" id='${product.id}'>
@@ -86,9 +89,9 @@ function generateProductsToAdmin() {
     });
   });
 }
+//general form validation=====================================================================
 (function () {
   var forms = document.querySelectorAll(".needs-validation");
-
   Array.prototype.slice.call(forms).forEach(function (form) {
     form.addEventListener(
       "submit",
@@ -104,10 +107,9 @@ function generateProductsToAdmin() {
     );
   });
 })();
-
+//user register=====================================================================
 function register(event) {
   event.preventDefault();
-
   let form = document.getElementById("registerForm");
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
@@ -166,6 +168,7 @@ function register(event) {
       });
     });
 }
+//user logout=====================================================================
 function logout() {
   localStorage.removeItem("loggedInUser");
   Swal.fire({
@@ -178,6 +181,7 @@ function logout() {
     window.location.href = "login.html";
   });
 }
+//add to cart=====================================================================
 async function addToCart(productId) {
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   if (!loggedInUser) {
@@ -239,6 +243,7 @@ async function addToCart(productId) {
     });
   }
 }
+//load cart=====================================================================
 async function loadCart() {
   let cartContainer = document.querySelector(".cart-items");
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -316,6 +321,7 @@ async function loadCart() {
     });
   }
 }
+//update quantity =====================================================================
 async function updateQuantity(productId, change) {
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   if (!loggedInUser) return;
@@ -349,6 +355,7 @@ async function updateQuantity(productId, change) {
     console.error("Error updating quantity:", error);
   }
 }
+//remove from cart =====================================================================
 async function removeFromCart(productId) {
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   if (!loggedInUser) return;
@@ -379,6 +386,7 @@ async function removeFromCart(productId) {
     console.error("Error removing item from cart:", error);
   }
 }
+// cart price=====================================================================
 async function updateCartSummary() {
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
@@ -437,6 +445,7 @@ async function updateCartSummary() {
     });
   }
 }
+// posting orders=====================================================================
 async function makeOrder() {
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   if (!loggedInUser) {
@@ -537,6 +546,7 @@ async function makeOrder() {
     });
   }
 }
+// load orders=====================================================================
 function fetchOrders() {
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
@@ -631,7 +641,7 @@ function fetchOrders() {
       });
     });
 }
-
+// add to wishlist=====================================================================
 async function addToWish(productId) {
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
@@ -689,7 +699,7 @@ async function addToWish(productId) {
     });
   }
 }
-
+// load wishlist=====================================================================
 async function populateWishlist() {
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
@@ -764,6 +774,7 @@ async function populateWishlist() {
     });
   }
 }
+// remove from wishlist=====================================================================
 async function removeFromWishlist(productId) {
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   if (!loggedInUser) return;
