@@ -1,0 +1,14 @@
+we passed all the requirements
+
+
+
+used mockapi as a backend service
+full methods withouts auth (put - post - delete - get)
+and local storage only for save login bolean and userID
+used modern lordicons and sweetalert
+used bootstrap validation
+full seo optimized
+performance at least 94 fffor the home page (heaviset one)
+used prepicked color palate with suitable colors for best Accessibility
+custom logo
+favicon

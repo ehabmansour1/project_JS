@@ -370,7 +370,7 @@ async function cancelOrder(orderId) {
     console.error("Error cancelling order:", error);
   }
 }
-// loadl customers ====================================================
+// load customers ====================================================
 async function populateCustomersTable() {
   try {
     let [usersResponse] = await Promise.all([
@@ -395,7 +395,7 @@ async function populateCustomersTable() {
           <td>
             <div class="customer-info">
               <img
-                src="https://picsum.photos/100/100"
+                src="../images/user.webp"
                 alt="Customer"
                 class="customer-avatar"
               />
