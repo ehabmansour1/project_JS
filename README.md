@@ -1,6 +1,6 @@
 # **Project Name**
 
-![Custom Logo]('C:\Users\Ehab\Desktop\Project E-Commerce\images')
+![Custom Logo]('https://hermans-ent.com/logo.png')
 
 ## **Overview**
 
