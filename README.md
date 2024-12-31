@@ -1,6 +1,7 @@
 # **Project Name**
 
-![Custom Logo]('https://hermans-ent.com/logo.png')
+![Custom Logo](https://hermans-ent.com/logo.png)
+
 
 ## **Overview**
 
